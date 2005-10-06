@@ -1,0 +1,10 @@
+2005-10-06	kaffeetisch
+
+	* NEWS, README: Version 0.01.
+
+2005-09-28	kaffeetisch
+
+	* .cvsignore, ChangeLog, Interfaces.pm, LICENSE, MANIFEST,
+	MANIFEST.SKIP, Makefile.PL, NEWS, README, copyright.pod,
+	gstinterfacesperl.h, maps, t/GstPropertyProbe.t, xs/.cvsignore,
+	xs/GstInterfaces.xs, xs/GstPropertyProbe.xs: Initial import.

@@ -1,0 +1,15 @@
+ChangeLog
+Interfaces.pm
+LICENSE
+MANIFEST			This list of files
+MANIFEST.SKIP
+Makefile.PL
+NEWS
+README
+copyright.pod
+gstinterfacesperl.h
+maps
+t/GstPropertyProbe.t
+xs/GstInterfaces.xs
+xs/GstPropertyProbe.xs
+META.yml                                 Module meta-data (added by MakeMaker)
