@@ -7,14 +7,14 @@ use ExtUtils::MakeMaker;
 use Cwd qw(cwd);
 use File::Spec;
 
-# $Id: Makefile.PL,v 1.1 2005/09/28 16:10:47 kaffeetisch Exp $
+# $Id: Makefile.PL,v 1.3 2006/01/29 21:34:06 kaffeetisch Exp $
 
 our %build_reqs = (
-  'perl-ExtUtils-Depends'   => '0.205',
-  'perl-ExtUtils-PkgConfig' => '1.07',
-  'perl-Glib'               => '1.100',
-  'perl-GStreamer'          => '0.02',
-  'GStreamerInterfaces'     => '0.8.0',
+  'perl-ExtUtils-Depends'       => '0.205',
+  'perl-ExtUtils-PkgConfig'     => '1.07',
+  'perl-Glib'                   => '1.103',
+  'perl-GStreamer'              => '0.06',
+  'gstreamer-plugins-base-0.10' => '0.10.0',
 );
 
 our %pre_reqs = (
@@ -39,7 +39,7 @@ unless (eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
   exit 1; # not reached
 }
 
-my %pkgcfg = ExtUtils::PkgConfig->find("gstreamer-interfaces-0.8 >= $build_reqs{'GStreamerInterfaces'}");
+my %pkgcfg = ExtUtils::PkgConfig->find("gstreamer-plugins-base-0.10 >= $build_reqs{'gstreamer-plugins-base-0.10'}");
 
 mkdir 'build', 0777;
 
@@ -48,7 +48,7 @@ Glib::CodeGen->write_boot(ignore => qr/^GStreamer::Interfaces$/);
 
 my $gst = ExtUtils::Depends->new('GStreamer::Interfaces', 'GStreamer');
 $gst->set_inc($pkgcfg{cflags});
-$gst->set_libs($pkgcfg{libs});
+$gst->set_libs($pkgcfg{libs} . ' -lgstinterfaces-0.10');
 $gst->add_xs(<xs/*.xs>);
 $gst->add_pm('Interfaces.pm' => '$(INST_LIBDIR)/Interfaces.pm');
 $gst->add_typemaps(map {File::Spec->catfile(cwd(), $_)} ('build/gstinterfacesperl.typemap'));

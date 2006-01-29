@@ -10,6 +10,8 @@ copyright.pod
 gstinterfacesperl.h
 maps
 t/GstPropertyProbe.t
+t/GstXOverlay.t
 xs/GstInterfaces.xs
 xs/GstPropertyProbe.xs
+xs/GstXOverlay.xs
 META.yml                                 Module meta-data (added by MakeMaker)

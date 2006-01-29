@@ -1,6 +1,6 @@
 package GStreamer::Interfaces;
 
-# $Id: Interfaces.pm,v 1.1 2005/09/28 16:10:47 kaffeetisch Exp $
+# $Id: Interfaces.pm,v 1.2 2006/01/29 21:34:06 kaffeetisch Exp $
 
 use strict;
 use warnings;
@@ -11,7 +11,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub dl_load_flags { $^O eq 'darwin' ? 0x00 : 0x01 }
 
@@ -39,6 +39,11 @@ GStreamer::Interfaces - Perl interface to the GStreamer Interfaces library
   }
 
   my @devices = $sink -> get_probe_values($pspec);
+
+  # GStreamer::XOverlay
+
+  my $overlay = GStreamer::ElementFactory -> make(xvimagesink => "overlay");
+  $element -> set_xwindow_id($xid);
 
 =head1 ABSTRACT
 
@@ -74,6 +79,20 @@ L<GStreamer::PropertyProbe>.
 
 =back
 
+=head2 GStreamer::XOverlay
+
+=item $overlay->set_xwindow_id (xwindow_id)
+
+=item $overlay->expose
+
+=item $overlay->got_xwindow_id (xwindow_id)
+
+=item $overlay->prepare_xwindow_id
+
+=over
+
+=back
+
 =head1 AUTHOR
 
 =over
@@ -84,6 +103,6 @@ L<GStreamer::PropertyProbe>.
 
 =head1 COPYRIGHT
 
-Copyright (C) 2005 by the gtk2-perl team
+Copyright (C) 2005-2006 by the gtk2-perl team
 
 =cut

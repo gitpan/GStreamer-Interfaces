@@ -15,17 +15,17 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Id: gstinterfacesperl.h,v 1.2 2006/01/24 19:53:42 kaffeetisch Exp $
+ * $Id: GstXOverlay.xs,v 1.1 2006/01/24 19:53:42 kaffeetisch Exp $
  */
 
-#ifndef _GSTINTERFACES2PERL_H_
-#define _GSTINTERFACES2PERL_H_
+#include "gstinterfacesperl.h"
 
-#include <gst2perl.h>
+MODULE = GStreamer::XOverlay	PACKAGE = GStreamer::XOverlay	PREFIX = gst_x_overlay_
 
-#include <gst/interfaces/propertyprobe.h>
-#include <gst/interfaces/xoverlay.h>
+void gst_x_overlay_set_xwindow_id (GstXOverlay *overlay, gulong xwindow_id);
 
-#include "gstinterfacesperl-autogen.h"
+void gst_x_overlay_expose (GstXOverlay *overlay);
 
-#endif /* _GSTINTERFACES2PERL_H_ */
+void gst_x_overlay_got_xwindow_id (GstXOverlay *overlay, gulong xwindow_id);
+
+void gst_x_overlay_prepare_xwindow_id (GstXOverlay *overlay);

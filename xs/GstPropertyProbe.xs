@@ -15,15 +15,12 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Id: GstPropertyProbe.xs,v 1.1 2005/09/28 16:10:48 kaffeetisch Exp $
+ * $Id: GstPropertyProbe.xs,v 1.2 2006/01/24 19:53:42 kaffeetisch Exp $
  */
 
 #include "gstinterfacesperl.h"
 
 MODULE = GStreamer::PropertyProbe	PACKAGE = GStreamer::PropertyProbe	PREFIX = gst_property_probe_
-
-BOOT:
-	gperl_set_isa ("GStreamer::Element", "GStreamer::PropertyProbe");
 
 # const GList * gst_property_probe_get_properties (GstPropertyProbe *probe);
 void

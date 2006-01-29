@@ -1,3 +1,8 @@
+Overview of changes in GStreamer-Interfaces 0.02
+================================================
+
+* Add support for GstXOverlay.
+
 Overview of changes in GStreamer-Interfaces 0.01
 ================================================
 

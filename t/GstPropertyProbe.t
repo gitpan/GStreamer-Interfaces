@@ -1,18 +1,19 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Test::More tests => 8;
+use Test::More tests => 9;
 
-# $Id: GstPropertyProbe.t,v 1.1 2005/09/28 16:10:48 kaffeetisch Exp $
+# $Id: GstPropertyProbe.t,v 1.2 2006/01/24 19:53:42 kaffeetisch Exp $
 
 use Glib qw(TRUE FALSE);
 use GStreamer -init;
 use GStreamer::Interfaces;
 
-my $plugin = "osssink";
+my $plugin = "alsamixer";
 my $property = "device";
 
 my $element = GStreamer::ElementFactory -> make($plugin => "element");
+isa_ok($element, "GStreamer::PropertyProbe");
 
 my @pspecs = $element -> get_probe_properties();
 isa_ok($pspecs[0], "Glib::ParamSpec");
@@ -26,13 +27,8 @@ $element -> probe_property($pspec);
 ok($element -> get_probe_values($pspec));
 ok($element -> probe_and_get_probe_values($pspec));
 
-SKIP: {
-  skip "the name stuff", 3
-    unless (0);
+ok(!$element -> needs_probe_name($property));
+$element -> probe_property_name($property);
 
-  is($element -> needs_probe_name($property), TRUE);
-  $element -> probe_property_name($property);
-
-  ok($element -> get_probe_values_name($property));
-  ok($element -> probe_and_get_probe_values_name($property));
-}
+ok($element -> get_probe_values_name($property));
+ok($element -> probe_and_get_probe_values_name($property));
