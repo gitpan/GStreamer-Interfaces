@@ -1,6 +1,6 @@
 package GStreamer::Interfaces;
 
-# $Id: Interfaces.pm,v 1.2 2006/01/29 21:34:06 kaffeetisch Exp $
+# $Id: Interfaces.pm,v 1.4 2006/07/07 22:04:18 kaffeetisch Exp $
 
 use strict;
 use warnings;
@@ -11,7 +11,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub dl_load_flags { $^O eq 'darwin' ? 0x00 : 0x01 }
 
@@ -48,8 +48,8 @@ GStreamer::Interfaces - Perl interface to the GStreamer Interfaces library
 =head1 ABSTRACT
 
 GStreamer::Interfaces provides access to some of the interfaces in the
-GStreamer Interfaces library.  Currently, that's only
-L<GStreamer::PropertyProbe>.
+GStreamer Interfaces library.  Currently, that's L<GStreamer::PropertyProbe>
+and L<GStreamer::XOverlay>.
 
 =head1 INTERFACES
 

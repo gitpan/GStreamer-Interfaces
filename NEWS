@@ -1,9 +1,14 @@
-Overview of changes in GStreamer-Interfaces 0.02
-================================================
+Overview of changes in GStreamer::Interfaces 0.03
+=================================================
+
+* Fix a test suite issue.
+
+Overview of changes in GStreamer::Interfaces 0.02
+=================================================
 
 * Add support for GstXOverlay.
 
-Overview of changes in GStreamer-Interfaces 0.01
-================================================
+Overview of changes in GStreamer::Interfaces 0.01
+=================================================
 
 * Initial release.

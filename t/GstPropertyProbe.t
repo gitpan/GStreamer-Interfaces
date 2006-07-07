@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Test::More tests => 9;
 
-# $Id: GstPropertyProbe.t,v 1.2 2006/01/24 19:53:42 kaffeetisch Exp $
+# $Id: GstPropertyProbe.t,v 1.3 2006/07/07 22:02:22 kaffeetisch Exp $
 
 use Glib qw(TRUE FALSE);
 use GStreamer -init;
@@ -27,7 +27,7 @@ $element -> probe_property($pspec);
 ok($element -> get_probe_values($pspec));
 ok($element -> probe_and_get_probe_values($pspec));
 
-ok(!$element -> needs_probe_name($property));
+ok(defined $element -> needs_probe_name($property));
 $element -> probe_property_name($property);
 
 ok($element -> get_probe_values_name($property));

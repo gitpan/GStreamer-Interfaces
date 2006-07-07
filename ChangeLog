@@ -1,3 +1,13 @@
+2006-07-07	kaffeetisch
+
+	* Interfaces.pm, NEWS, copyright.pod: Version 0.03.
+
+2006-07-07	kaffeetisch
+
+	* Interfaces.pm: Fix a doc glitch.
+
+	* t/GstPropertyProbe.t: Fix a potential failure.
+
 2006-01-29	kaffeetisch
 
 	* Makefile.PL: Require GStreamer 0.06.
