@@ -1,6 +1,6 @@
 package GStreamer::Interfaces;
 
-# $Id: Interfaces.pm,v 1.4 2006/07/07 22:04:18 kaffeetisch Exp $
+# $Id: Interfaces.pm,v 1.7 2008/03/16 12:43:42 kaffeetisch Exp $
 
 use strict;
 use warnings;
@@ -11,7 +11,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 sub dl_load_flags { $^O eq 'darwin' ? 0x00 : 0x01 }
 
@@ -29,6 +29,8 @@ GStreamer::Interfaces - Perl interface to the GStreamer Interfaces library
 
 =head1 SYNOPSIS
 
+  use GStreamer::Interfaces;
+
   # GStreamer::PropertyProbe
 
   my $sink = GStreamer::ElementFactory -> make(alsasink => "sink");
@@ -43,7 +45,7 @@ GStreamer::Interfaces - Perl interface to the GStreamer Interfaces library
   # GStreamer::XOverlay
 
   my $overlay = GStreamer::ElementFactory -> make(xvimagesink => "overlay");
-  $element -> set_xwindow_id($xid);
+  $overlay -> set_xwindow_id($xid);
 
 =head1 ABSTRACT
 
@@ -81,6 +83,8 @@ and L<GStreamer::XOverlay>.
 
 =head2 GStreamer::XOverlay
 
+=over
+
 =item $overlay->set_xwindow_id (xwindow_id)
 
 =item $overlay->expose
@@ -88,8 +92,6 @@ and L<GStreamer::XOverlay>.
 =item $overlay->got_xwindow_id (xwindow_id)
 
 =item $overlay->prepare_xwindow_id
-
-=over
 
 =back
 

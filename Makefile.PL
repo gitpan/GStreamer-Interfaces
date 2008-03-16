@@ -1,5 +1,7 @@
 #!/usr/bin/perl
-use 5.008;
+
+BEGIN { require 5.008; }
+
 use strict;
 use warnings;
 
@@ -7,12 +9,12 @@ use ExtUtils::MakeMaker;
 use Cwd qw(cwd);
 use File::Spec;
 
-# $Id: Makefile.PL,v 1.3 2006/01/29 21:34:06 kaffeetisch Exp $
+# $Id: Makefile.PL,v 1.6 2008/03/16 12:43:43 kaffeetisch Exp $
 
 our %build_reqs = (
   'perl-ExtUtils-Depends'       => '0.205',
   'perl-ExtUtils-PkgConfig'     => '1.07',
-  'perl-Glib'                   => '1.103',
+  'perl-Glib'                   => '1.180',
   'perl-GStreamer'              => '0.06',
   'gstreamer-plugins-base-0.10' => '0.10.0',
 );
@@ -56,13 +58,19 @@ $gst->add_typemaps(map {File::Spec->catfile(cwd(), $_)} ('build/gstinterfacesper
 $gst->install(qw(gstinterfacesperl.h));
 $gst->save_config('build/IFiles.pm');
 
+my $configure_requires =
+  Glib::MakeHelper->get_configure_requires_yaml(%pre_reqs);
+
 WriteMakefile(
   NAME          => 'GStreamer::Interfaces',
   VERSION_FROM  => 'Interfaces.pm',
   ABSTRACT_FROM => 'Interfaces.pm',
   PREREQ_PM     => \%pre_reqs,
   XSPROTOARG    => '-noprototypes',
+
   $gst->get_makefile_vars,
+
+  EXTRA_META    => $configure_requires,
 );
 
 sub MY::postamble {

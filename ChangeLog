@@ -1,3 +1,32 @@
+2008-03-16  Torsten Schoenfeld  <kaffeetisch@gmx.de>
+
+	* Interfaces.pm
+	* Makefile.PL
+	* NEWS
+	* README: Version 0.04.
+
+2008-01-19  Torsten Schoenfeld  <kaffeetisch@gmx.de>
+
+	* t/GstXOverlay.t: Fix test failure.
+
+2007-11-04  Torsten Schoenfeld  <kaffeetisch@gmx.de>
+
+	* Makefile.PL: Require Glib 1.170 for the configure_requires
+	stuff.
+
+2007-10-19  Torsten Schoenfeld  <kaffeetisch@gmx.de>
+
+	* Makefile.PL: Use a more compatible way to indicate which perl
+	version we require.  Use Glib::MakeHelper's new configure_requires
+	stuff to announce our Makefile.PL-time dependencies.
+
+	* Interfaces.pm: Fix mistakes in the synopsis.  (Found by James
+	Bromberger)
+
+2006-10-03	kaffeetisch
+
+	* Interfaces.pm: Fix POD errors.
+
 2006-07-07	kaffeetisch
 
 	* Interfaces.pm, NEWS, copyright.pod: Version 0.03.
