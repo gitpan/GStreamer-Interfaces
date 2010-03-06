@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Test::More tests => 1;
 
-# $Id: GstXOverlay.t,v 1.2 2008/01/19 16:33:36 kaffeetisch Exp $
+# $Id$
 
 use Glib qw(TRUE FALSE);
 use GStreamer -init;

@@ -1,6 +1,10 @@
-CVS
-.cvsignore$
+blib
 build
+\.git
+\.gitignore$
+Interfaces.bs
 Makefile$
 \.bak$
 \.releaserc$
+xs/.*\.c$
+xs/.*\.o$

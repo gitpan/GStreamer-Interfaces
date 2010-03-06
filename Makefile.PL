@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker;
 use Cwd qw(cwd);
 use File::Spec;
 
-# $Id: Makefile.PL,v 1.6 2008/03/16 12:43:43 kaffeetisch Exp $
+# $Id$
 
 our %build_reqs = (
   'perl-ExtUtils-Depends'       => '0.205',
@@ -41,7 +41,16 @@ unless (eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
   exit 1; # not reached
 }
 
-my %pkgcfg = ExtUtils::PkgConfig->find("gstreamer-plugins-base-0.10 >= $build_reqs{'gstreamer-plugins-base-0.10'}");
+# If the package can't be found, warn and exit with status 0 to indicate to
+# CPAN testers that their system is not supported.
+my %pkgcfg;
+unless (eval { %pkgcfg = ExtUtils::PkgConfig->find (
+                 "gstreamer-plugins-base-0.10 >= $build_reqs{'gstreamer-plugins-base-0.10'}");
+	       1; })
+{
+	warn $@;
+	exit 0;
+}
 
 mkdir 'build', 0777;
 
@@ -53,7 +62,8 @@ $gst->set_inc($pkgcfg{cflags});
 $gst->set_libs($pkgcfg{libs} . ' -lgstinterfaces-0.10');
 $gst->add_xs(<xs/*.xs>);
 $gst->add_pm('Interfaces.pm' => '$(INST_LIBDIR)/Interfaces.pm');
-$gst->add_typemaps(map {File::Spec->catfile(cwd(), $_)} ('build/gstinterfacesperl.typemap'));
+$gst->add_typemaps(map {File::Spec->catfile(cwd(), $_)}
+                       ('build/gstinterfacesperl.typemap'));
 
 $gst->install(qw(gstinterfacesperl.h));
 $gst->save_config('build/IFiles.pm');
@@ -68,9 +78,11 @@ WriteMakefile(
   PREREQ_PM     => \%pre_reqs,
   XSPROTOARG    => '-noprototypes',
 
-  $gst->get_makefile_vars,
+  META_MERGE    => {
+    configure_requires => \%pre_reqs,
+  },
 
-  EXTRA_META    => $configure_requires,
+  $gst->get_makefile_vars,
 );
 
 sub MY::postamble {

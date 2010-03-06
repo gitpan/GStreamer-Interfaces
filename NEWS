@@ -1,3 +1,9 @@
+Overview of changes in GStreamer::Interfaces 0.05
+=================================================
+
+* Add an example showing how to implement a simplistic video player.
+* Fix a test suite issue.
+
 Overview of changes in GStreamer::Interfaces 0.04
 =================================================
 

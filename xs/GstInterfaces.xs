@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Id: GstInterfaces.xs,v 1.1 2005/09/28 16:10:48 kaffeetisch Exp $
+ * $Id$
  */
 
 #include "gstinterfacesperl.h"

@@ -1,7 +1,5 @@
 package GStreamer::Interfaces;
 
-# $Id: Interfaces.pm,v 1.7 2008/03/16 12:43:42 kaffeetisch Exp $
-
 use strict;
 use warnings;
 
@@ -11,7 +9,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 sub dl_load_flags { $^O eq 'darwin' ? 0x00 : 0x01 }
 
