@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               GStreamer-Interfaces
-version:            0.05
+version:            0.06
 abstract:           Perl interface to the GStreamer Interfaces library
 author:  []
 license:            unknown

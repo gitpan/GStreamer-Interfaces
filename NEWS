@@ -1,3 +1,11 @@
+Overview of changes in GStreamer::Interfaces 0.06
+=================================================
+
+* Add GStreamer::XOverlay->handle_events.  It is only available for
+  gstinterfaces >= 0.10.12, so also add GStreamer::Interfaces->CHECK_VERSION to
+  make version checks possible.
+* Fix test failures.
+
 Overview of changes in GStreamer::Interfaces 0.05
 =================================================
 

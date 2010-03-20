@@ -29,3 +29,9 @@ void gst_x_overlay_expose (GstXOverlay *overlay);
 void gst_x_overlay_got_xwindow_id (GstXOverlay *overlay, gulong xwindow_id);
 
 void gst_x_overlay_prepare_xwindow_id (GstXOverlay *overlay);
+
+#if GST_INTERFACES_CHECK_VERSION(0, 10, 12)
+
+void gst_x_overlay_handle_events (GstXOverlay * overlay, gboolean handle_events);
+
+#endif

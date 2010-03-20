@@ -26,6 +26,7 @@
 #include <gst/interfaces/propertyprobe.h>
 #include <gst/interfaces/xoverlay.h>
 
+#include "gstinterfacesperl-version.h"
 #include "gstinterfacesperl-autogen.h"
 
 #endif /* _GSTINTERFACES2PERL_H_ */

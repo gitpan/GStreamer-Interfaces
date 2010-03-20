@@ -22,5 +22,9 @@ SKIP: {
   $element -> expose();
   $element -> got_xwindow_id(0);
   $element -> prepare_xwindow_id();
+
+  skip 'need 0.10.12', 0
+    unless GStreamer::Interfaces->CHECK_VERSION(0, 10, 12);
+  $element -> handle_events(TRUE);
 }
 

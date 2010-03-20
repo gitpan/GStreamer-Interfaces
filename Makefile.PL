@@ -57,15 +57,22 @@ mkdir 'build', 0777;
 Glib::CodeGen->parse_maps('gstinterfacesperl');
 Glib::CodeGen->write_boot(ignore => qr/^GStreamer::Interfaces$/);
 
+ExtUtils::PkgConfig->write_version_macros (
+  "build/gstinterfacesperl-version.h",
+  "gstreamer-plugins-base-0.10" => "GST_INTERFACES",
+);
+
 my $gst = ExtUtils::Depends->new('GStreamer::Interfaces', 'GStreamer');
 $gst->set_inc($pkgcfg{cflags});
 $gst->set_libs($pkgcfg{libs} . ' -lgstinterfaces-0.10');
 $gst->add_xs(<xs/*.xs>);
-$gst->add_pm('Interfaces.pm' => '$(INST_LIBDIR)/Interfaces.pm');
+$gst->add_pm('lib/GStreamer/Interfaces.pm' => '$(INST_LIBDIR)/Interfaces.pm');
 $gst->add_typemaps(map {File::Spec->catfile(cwd(), $_)}
                        ('build/gstinterfacesperl.typemap'));
 
-$gst->install(qw(gstinterfacesperl.h));
+$gst->install(qw(gstinterfacesperl.h
+                 build/gstinterfacesperl-autogen.h
+                 build/gstinterfacesperl-version.h));
 $gst->save_config('build/IFiles.pm');
 
 my $configure_requires =
@@ -73,8 +80,8 @@ my $configure_requires =
 
 WriteMakefile(
   NAME          => 'GStreamer::Interfaces',
-  VERSION_FROM  => 'Interfaces.pm',
-  ABSTRACT_FROM => 'Interfaces.pm',
+  VERSION_FROM  => 'lib/GStreamer/Interfaces.pm',
+  ABSTRACT_FROM => 'lib/GStreamer/Interfaces.pm',
   PREREQ_PM     => \%pre_reqs,
   XSPROTOARG    => '-noprototypes',
 
@@ -86,8 +93,5 @@ WriteMakefile(
 );
 
 sub MY::postamble {
-  return Glib::MakeHelper->postamble_clean ()
-       . Glib::MakeHelper->postamble_docs_full (
-           DEPENDS => $gst,
-           COPYRIGHT_FROM => 'copyright.pod');
+  return Glib::MakeHelper->postamble_clean ();
 }

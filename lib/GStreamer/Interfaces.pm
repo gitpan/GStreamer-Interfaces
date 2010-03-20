@@ -9,7 +9,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 sub dl_load_flags { $^O eq 'darwin' ? 0x00 : 0x01 }
 
@@ -91,6 +91,8 @@ and L<GStreamer::XOverlay>.
 
 =item $overlay->prepare_xwindow_id
 
+=item $overlay->handle_events (bool) (since 0.10.12)
+
 =back
 
 =head1 AUTHOR
@@ -103,6 +105,6 @@ and L<GStreamer::XOverlay>.
 
 =head1 COPYRIGHT
 
-Copyright (C) 2005-2006 by the gtk2-perl team
+Copyright (C) 2005-2010 by the gtk2-perl team
 
 =cut

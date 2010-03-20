@@ -11,20 +11,19 @@ my $plugin = "alsamixer";
 my $property = "device";
 
 my $element = GStreamer::ElementFactory -> make($plugin => "element");
-isa_ok($element, "GStreamer::PropertyProbe");
-
-my @pspecs = $element -> get_probe_properties();
 SKIP: {
-  skip 'got no probe properties', 8
+  skip 'could not find the alsamixer plugin', 5
+    unless defined $element;
+  isa_ok($element, "GStreamer::PropertyProbe");
+
+  my @pspecs = $element -> get_probe_properties();
+  skip 'got no probe properties', 4
     unless @pspecs;
   isa_ok($pspecs[0], "Glib::ParamSpec");
-}
 
-my $pspec = $element -> get_probe_property($property);
-SKIP: {
+  my $pspec = $element -> get_probe_property($property);
   skip 'did not get desired property', 3
     unless defined $pspec;
-
   isa_ok($pspec, "Glib::ParamSpec");
 
   ok(defined $element -> needs_probe($pspec));

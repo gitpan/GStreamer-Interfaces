@@ -25,3 +25,15 @@ MODULE = GStreamer::Interfaces	PACKAGE = GStreamer::Interfaces
 BOOT:
 #include "register.xsh"
 #include "boot.xsh"
+
+=for apidoc __hide__
+=cut
+bool
+CHECK_VERSION (class, major, minor, micro)
+	int major
+	int minor
+	int micro
+    CODE:
+	RETVAL = GST_INTERFACES_CHECK_VERSION (major, minor, micro);
+    OUTPUT:
+	RETVAL
